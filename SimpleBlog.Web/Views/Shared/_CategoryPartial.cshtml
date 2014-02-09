@@ -1,0 +1,7 @@
+﻿<ul class="categoryList">
+    <li><a href="/">Home</a></li>
+    @foreach (var item in SimpleBlog.Web.Helpers.CategoryHelper.GetCategories())
+    {
+        <li>@Html.ActionLink(item.Name, "Category", new{ id = item.CategoryID} )</li>
+    }
+</ul>

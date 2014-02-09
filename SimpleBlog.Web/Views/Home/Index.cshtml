@@ -1,0 +1,22 @@
+﻿@model PagedList.IPagedList<SimpleBlog.Entities.Post>
+@{
+    ViewBag.Title = HttpRuntime.Cache["BlogTitle"];
+}
+@using PagedList.Mvc; 
+@using PagedList;
+
+@section HeaderStuff {
+    <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+}
+<h1 class="text-center">@HttpRuntime.Cache["BlogTitle"]</h1>
+
+@foreach (var item in Model)
+{
+    <div class="blogPost">
+        <h2><a href="/home/article/@Html.DisplayFor(modelItem => item.PostID)">@Html.DisplayFor(modelItem => item.Title)</a></h2>
+        <p class="postTagline">Posted by Sample Person on @Html.DisplayFor(modelItem => item.PostDate) in Category: @Html.DisplayFor(modelItem => item.Category.Name)</p>
+        <p>@Html.DisplayFor(modelItem => item.Summary)</p>
+        <p><a href="/home/article/@Html.DisplayFor(modelItem => item.PostID)">Read More ...</a></p>
+    </div>
+}
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

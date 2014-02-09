@@ -1,0 +1,21 @@
+﻿@model SimpleBlog.Entities.Post
+
+@{
+    ViewBag.Title = "Article";
+}
+
+<div class="blogPost">
+    <h1>@Html.DisplayFor(model => model.Title)</h1>
+    
+    @if (!string.IsNullOrEmpty(Model.ImageName))
+    {
+        <div><img src="@Model.ImageName" class="img-rounded" /> </div>
+    }   
+    
+
+    @Html.Raw(Model.PostBody)
+    <p>&nbsp;</p>
+    <p class="postTagline">Posted by Sample User on @Html.DisplayFor(model => model.PostDate) in Category: @Html.DisplayFor(model => model.Category.Name)</p>
+
+    <p>Last Updated: @Html.DisplayFor(model => model.UpdateDate)</p>
+</div>

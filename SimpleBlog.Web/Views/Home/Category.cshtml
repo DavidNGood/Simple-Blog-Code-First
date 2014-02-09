@@ -1,0 +1,20 @@
+﻿@model PagedList.IPagedList<SimpleBlog.Entities.Post>
+
+@{
+    ViewBag.Title = "Category";
+}
+@using PagedList.Mvc;
+@using PagedList;
+<h1 class="text-center">@ViewBag.CategoryName Category</h1>
+
+@foreach (var item in Model)
+{
+    <div class="blogPost">
+        <h2><a href="/home/article/@Html.DisplayFor(modelItem => item.PostID)">@Html.DisplayFor(modelItem => item.Title)</a></h2>
+        <p class="postTagline">Posted by Sample User on @Html.DisplayFor(modelItem => item.PostDate) in Category: @Html.DisplayFor(modelItem => item.Category.Name)</p>
+        <p>@Html.DisplayFor(modelItem => item.Summary)</p>
+        <p><a href="/home/article/@Html.DisplayFor(modelItem => item.PostID)">Read More ...</a></p>
+        <hr />
+    </div>
+}
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Category", new { page }))

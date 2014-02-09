@@ -1,0 +1,10 @@
+﻿@model IEnumerable<SimpleBlog.Entities.Category>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><a href="/home/category/@Html.DisplayFor(modelItem => item.CategoryID)">@Html.DisplayFor(modelItem => item.Name)</a></li>
+
+    }
+</ul>
+

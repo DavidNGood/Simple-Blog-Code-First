@@ -1,0 +1,25 @@
+﻿@model IEnumerable<SimpleBlog.Entities.Post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@foreach (var item in Model) {
+    <div class="blogPost">
+        <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+        <p class="postTagline">Posted by Sample User on @Html.DisplayFor(modelItem => item.PostDate) in Category: @Html.DisplayFor(modelItem => item.Category.Name)</p>
+        <p>@Html.DisplayFor(modelItem => item.Summary)</p>
+        <p>@Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.PostID })</p>
+        <hr />
+    </div>
+}
